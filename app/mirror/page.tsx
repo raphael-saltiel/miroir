@@ -126,6 +126,15 @@ export default function Mirror() {
 
   return (
     <main className="mirror">
+      {track?.playing && (
+        <div className="track">
+          {track.image && <img src={track.image} alt="" />}
+          <div>
+            <div className="track-title">{track.title}</div>
+            <div className="track-artist">{track.artist}</div>
+          </div>
+        </div>
+      )}
       <section className="left">
         <div className="clock">{fmt(now, { hour: "2-digit", minute: "2-digit" })}</div>
         <div className="date">{fmt(now, { weekday: "long", day: "numeric", month: "long" })}</div>
@@ -138,15 +147,6 @@ export default function Mirror() {
                 {Math.round(weather.min)}° / {Math.round(weather.max)}°
               </div>
               <div>pluie {weather.rain}%</div>
-            </div>
-          </div>
-        )}
-        {track?.playing && (
-          <div className="track">
-            {track.image && <img src={track.image} alt="" />}
-            <div>
-              <div className="track-title">{track.title}</div>
-              <div className="track-artist">{track.artist}</div>
             </div>
           </div>
         )}

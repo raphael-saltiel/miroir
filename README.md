@@ -4,7 +4,7 @@ Page plein écran pour miroir connecté (Raspberry Pi 4, écran 1920x1080 en pay
 
 - `/mirror` : horloge, météo Paris (Open-Meteo, côté client), séance et agenda du jour.
 - `/api/calendar` : lit les .ics iCloud publics et renvoie les événements du jour (Europe/Paris).
-- `/api/spotify` : morceau en cours de lecture sur Spotify, affiché sous la météo.
+- `/api/spotify` : morceau en cours de lecture sur Spotify, affiché en haut à droite.
 
 ## Variables d'environnement
 

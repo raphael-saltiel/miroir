@@ -21,6 +21,7 @@ body {
   gap: 240px;
   height: 100vh;
   padding: 80px 100px 90px;
+  position: relative;
 }
 
 .left,
@@ -124,11 +125,15 @@ h2 {
 }
 
 .track {
+  position: absolute;
+  top: 80px;
+  right: 100px;
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 28px;
-  margin-top: 44px;
-  max-width: 100%;
+  max-width: 45%;
+  text-align: right;
 }
 
 .track img {
