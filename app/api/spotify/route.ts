@@ -8,7 +8,10 @@ let access: { token: string; expires: number } | null = null;
 async function accessToken() {
   if (access && access.expires > Date.now()) return access.token;
   const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } = process.env;
-  if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET || !SPOTIFY_REFRESH_TOKEN) throw new Error("Variables SPOTIFY_* manquantes");
+  const missing = Object.entries({ SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN })
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+  if (missing.length) throw new Error(`Variables manquantes : ${missing.join(", ")}`);
 
   const res = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
