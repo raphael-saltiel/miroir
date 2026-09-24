@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+  cursor: none;
+}
+
+.mirror {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+  height: 100vh;
+  padding: 72px 96px;
+}
+
+.muted {
+  color: #888;
+}
+
+.clock {
+  font-size: 220px;
+  font-weight: 300;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.date {
+  font-size: 48px;
+  margin-top: 16px;
+}
+
+.date::first-letter {
+  text-transform: uppercase;
+}
+
+.weather {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-top: 64px;
+  font-size: 36px;
+}
+
+.weather .temp {
+  font-size: 110px;
+  font-weight: 300;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  margin: 0 0 20px;
+}
+
+h2 + * {
+  margin-bottom: 56px;
+}
+
+.right > p {
+  font-size: 40px;
+}
+
+.events {
+  list-style: none;
+}
+
+.events li {
+  display: flex;
+  gap: 32px;
+  font-size: 40px;
+  margin-bottom: 18px;
+}
+
+.events .time {
+  flex: 0 0 260px;
+  color: #aaa;
+  font-variant-numeric: tabular-nums;
+}
