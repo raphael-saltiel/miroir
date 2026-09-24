@@ -19,7 +19,7 @@ async function accessToken() {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization: `Basic ${btoa(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`)}`,
     },
-    body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: SPOTIFY_REFRESH_TOKEN }),
+    body: new URLSearchParams({ grant_type: "refresh_token", refresh_token: SPOTIFY_REFRESH_TOKEN! }),
     cache: "no-store",
   });
   if (!res.ok) throw new Error(`Token Spotify ${res.status}`);
