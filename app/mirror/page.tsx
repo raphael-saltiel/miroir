@@ -11,6 +11,7 @@ const WEATHER_URL =
 
 type CalendarEvent = { title: string; start: string; end: string; allDay: boolean };
 type Calendar = { agenda: CalendarEvent[]; sport: CalendarEvent[] };
+type Track = { playing: boolean; title?: string; artist?: string; image?: string | null };
 type Weather = { temp: number; code: number; max: number; min: number; rain: number };
 
 const CLOUD_TOP = "M4 14.9A7 7 0 1 1 15.7 8h1.8a4.5 4.5 0 0 1 2.5 8.2";
@@ -76,6 +77,7 @@ export default function Mirror() {
   const [weather, setWeather] = useState<Weather | null>(null);
   const [calendar, setCalendar] = useState<Calendar | null>(null);
   const [calendarError, setCalendarError] = useState(false);
+  const [track, setTrack] = useState<Track | null>(null);
 
   useInterval(() => setNow(new Date()), 1000);
 
@@ -104,6 +106,13 @@ export default function Mirror() {
       .catch(() => setCalendarError(true));
   }, 5 * 60 * 1000);
 
+  useInterval(() => {
+    fetch("/api/spotify", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : Promise.reject()))
+      .then(setTrack)
+      .catch(() => setTrack(null));
+  }, 15 * 1000);
+
   // Rechargement complet chaque jour à 4h du matin (heure locale du Pi).
   useEffect(() => {
     const next = new Date();
@@ -129,6 +138,15 @@ export default function Mirror() {
                 {Math.round(weather.min)}° / {Math.round(weather.max)}°
               </div>
               <div>pluie {weather.rain}%</div>
+            </div>
+          </div>
+        )}
+        {track?.playing && (
+          <div className="track">
+            {track.image && <img src={track.image} alt="" />}
+            <div>
+              <div className="track-title">{track.title}</div>
+              <div className="track-artist">{track.artist}</div>
             </div>
           </div>
         )}
